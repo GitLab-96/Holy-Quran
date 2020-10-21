@@ -2,6 +2,7 @@ package com.example.holyquran;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -56,8 +57,10 @@ public class PreferenceActivity extends AppCompatActivity {
                 String horizontalButtn = textView1.getText().toString();
                 String modeTextView =  modeTV.getText().toString();
 
-                Toast.makeText(PreferenceActivity.this, horizontalButtn, Toast.LENGTH_SHORT).show();
-               // Toast.makeText(PreferenceActivity.this, modeTextView, Toast.LENGTH_SHORT).show();
+              Intent intent = new Intent(PreferenceActivity.this,MainActivity.class);
+              intent.putExtra("orientation",horizontalButtn);
+              intent.putExtra("mode",modeTextView);
+              startActivity(intent);
 
             }
         });
