@@ -59,6 +59,16 @@ public class MainActivity extends AppCompatActivity {
                    ft3.replace(R.id.framLayout,new ParaList());
                    ft3.commit();
                    break;
+               case R.id.bookmarks_Item:
+                   FragmentTransaction ft4 = getSupportFragmentManager().beginTransaction();
+                   ft4.replace(R.id.framLayout,new BookMarks());
+                   ft4.commit();
+                   break;
+               case R.id.tools_Item:
+                   FragmentTransaction ft5 = getSupportFragmentManager().beginTransaction();
+                   ft5.replace(R.id.framLayout,new Tools());
+                   ft5.commit();
+                   break;
            }
 
             return true;
@@ -73,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Do You Exit ?");

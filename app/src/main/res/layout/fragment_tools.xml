@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/book11"
+    tools:context=".Tools">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/sura"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Hifzul Quran"
+        android:textSize="50sp"/>
+
+
+
+    <TextView
+        android:id="@+id/preferenceID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:drawablePadding="15dp"
+        android:text="Preferences"
+        android:textColor="#020202"
+        android:drawableLeft="@drawable/ic_settings_black_24dp"
+        android:textSize="30sp"/>
+
+
+    <TextView
+        android:id="@+id/shareAppId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textColorLink="#C91AE7"
+        android:drawablePadding="15dp"
+        android:text="Share App"
+        android:textColor="#020202"
+        android:drawableLeft="@drawable/ic_share_black_24dp"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/moreApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:drawablePadding="15dp"
+        android:text="More Apps"
+        android:textColor="#020202"
+        android:drawableLeft="@drawable/ic_play_for_work_black_24dp"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/contactUs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:drawablePadding="15dp"
+        android:text="Contact Us"
+        android:textColor="#020202"
+        android:drawableLeft="@drawable/ic_email_black_24dp"
+        android:textSize="30sp"/>
+
+</LinearLayout>

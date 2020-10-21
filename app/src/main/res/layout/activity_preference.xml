@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".PreferenceActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:padding="10dp"
+        android:background="@drawable/bounarydesign"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Page Turn Direction"
+            android:drawablePadding="15dp"
+            android:gravity="center_vertical"
+            android:textSize="25sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:background="#0427F7"
+            android:drawableLeft="@drawable/quraldrwablelesftresize"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/ic_swap_horiz_black_24dp"
+                android:text="Horizontal ( Right to Left)"/>
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/ic_swap_vert_black_24dp"
+                android:text="Vertical ( Top to Bottom)"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:padding="10dp"
+        android:background="@drawable/bounarydesign"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Night Mode"
+            android:drawablePadding="15dp"
+            android:gravity="center_vertical"
+            android:textSize="25sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:background="#0427F7"
+            android:drawableLeft="@drawable/quraldrwablelesftresize"/>
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal">
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Disabled"
+             android:textSize="20sp"
+             android:padding="10dp"
+             android:id="@+id/modeTV"/>
+
+
+         <Switch
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_alignParentEnd="true"
+             android:layout_centerInParent="true"
+             android:id="@+id/modeSwitch"/>
+     </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/saveButtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:layout_gravity="right"
+        android:layout_marginRight="33dp"
+        android:background="@drawable/bounarydesign"/>
+
+
+
+
+</LinearLayout>

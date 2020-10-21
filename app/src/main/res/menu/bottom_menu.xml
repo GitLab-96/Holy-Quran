@@ -14,4 +14,12 @@
         android:title="পারা"
         android:id="@+id/para_Item"
         android:icon="@drawable/para"/>
+    <item
+        android:title="বুকমার্কস"
+        android:id="@+id/bookmarks_Item"
+        android:icon="@drawable/ic_collections_bookmark_black_24dp"/>
+    <item
+        android:title="টুলস"
+        android:id="@+id/tools_Item"
+        android:icon="@drawable/ic_settings_black_24dp"/>
 </menu>
