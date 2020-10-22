@@ -13,17 +13,26 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class MainActivity extends AppCompatActivity {
 
     FrameLayout frameLayout;
     BottomNavigationView navigationView;
     boolean exit = false;
+
+    private TextView displayTV,displayTV2;
 
 
     PDFView quranPdf;
@@ -42,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
             asorTV,hmajahTV,filTV,kuraishTV,maunTV,kaosarTV,kafirunTV,nasrTV,lahabTV,ikhlasTV,falakTV,nasTV;
 
 
+    boolean setOrientation = false;
+    boolean setMode = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,21 +63,96 @@ public class MainActivity extends AppCompatActivity {
         ParaList();
         SuraList();
 
-        String currentMode = getIntent().getStringExtra("mode");
-        String currentOriantation = getIntent().getStringExtra("orientation");
-        Toast.makeText(this, currentMode+"Main"+currentOriantation+"Main", Toast.LENGTH_SHORT).show();
+        displayTV = findViewById(R.id.displayTV);
+        displayTV2 = findViewById(R.id.displayTV2);
+
+
+        //Orientation
+        try {
+            FileInputStream fileInputStream = openFileInput("orientation.txt");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+            String line;
+            StringBuffer  stringBuffer= new StringBuffer();
+
+            while ((line = bufferedReader.readLine()) !=null){
+                stringBuffer.append(line);
+            }
+
+            displayTV.setText(stringBuffer.toString());
+        }
+        catch (FileNotFoundException e){
+
+            e.printStackTrace();
+        }
+        catch (IOException e){
+
+            e.printStackTrace();
+        }
+
+        //Night Mode
+
+        try {
+            FileInputStream fileInputStream = openFileInput("nightMode.txt");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+            String line1;
+            StringBuffer  stringBuffer= new StringBuffer();
+
+            while ((line1 = bufferedReader.readLine()) !=null){
+                stringBuffer.append(line1);
+            }
+
+            displayTV2.setText(stringBuffer.toString());
+        }
+        catch (FileNotFoundException e){
+
+            e.printStackTrace();
+        }
+        catch (IOException e){
+
+            e.printStackTrace();
+        }
+
+        String currentorientation = displayTV.getText().toString();
+        String currentMode = displayTV2.getText().toString();
+
+        if (currentorientation.equals("Horizontal ( Right to Left)"))
+        {
+            setOrientation = true;
+        }
+        if (currentMode.equals("Enabled")){
+
+            setMode = true;
+        }
+
+//        String currentMode = getIntent().getStringExtra("mode");
+//        String currentOriantation = getIntent().getStringExtra("orientation");
+//        Toast.makeText(this, currentMode+"Main"+currentOriantation+"Main", Toast.LENGTH_SHORT).show();
+//
+
+
+//        if (currentMode.equals("Enabled")){
+//            setMode = true;
+//        }
+//        if (currentOriantation.equals("Horizontal ( Right to Left)")){
+//
+//            setOrientation = true;
+//        }
 
 
         quranPdf.fromAsset("hifjquran.pdf")
                 .defaultPage(0)
                 .enableAnnotationRendering(true)
                 .enableSwipe(true)
-                .swipeHorizontal(true)
+                .swipeHorizontal(setOrientation)
                 .enableDoubletap(true)
                 .pageFling(true)
                 .pageSnap(true)
                 .autoSpacing(true)
-                .nightMode(true)
+                .nightMode(setMode)
                 .scrollHandle(new DefaultScrollHandle(this,true))
                 .spacing(2).load();
 
@@ -3119,6 +3205,7 @@ public class MainActivity extends AppCompatActivity {
                    scrollViewParaList.setVisibility(View.VISIBLE);
                    break;
                case R.id.bookmarks_Item:
+                   scrollViewParaList.setVisibility(View.GONE);
                    frameLayout.setVisibility(View.VISIBLE);
                    scrollViewList.setVisibility(View.GONE);
                    quranPdf.setVisibility(View.GONE);
@@ -3129,6 +3216,7 @@ public class MainActivity extends AppCompatActivity {
                case R.id.tools_Item:
                    frameLayout.setVisibility(View.VISIBLE);
                    scrollViewList.setVisibility(View.GONE);
+                   scrollViewParaList.setVisibility(View.GONE);
                    quranPdf.setVisibility(View.GONE);
                    FragmentTransaction ft5 = getSupportFragmentManager().beginTransaction();
                    ft5.replace(R.id.framLayout,new Tools());

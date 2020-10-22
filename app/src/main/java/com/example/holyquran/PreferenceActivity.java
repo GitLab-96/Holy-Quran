@@ -2,6 +2,7 @@ package com.example.holyquran;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,13 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class PreferenceActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton horizontalRB,verticalRB;
@@ -21,6 +29,9 @@ public class PreferenceActivity extends AppCompatActivity {
     String text=null;
 
     TextView textView1;
+
+    String file = "myFile";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +44,8 @@ public class PreferenceActivity extends AppCompatActivity {
         modeTV = findViewById(R.id.modeTV);
         modeSwitch = findViewById(R.id.modeSwitch);
         textView1 = findViewById(R.id.selectOptionTV);
+
+
 
 
         modeSwitch.setOnClickListener(new View.OnClickListener() {
@@ -48,8 +61,6 @@ public class PreferenceActivity extends AppCompatActivity {
         });
 
 
-
-
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,13 +68,38 @@ public class PreferenceActivity extends AppCompatActivity {
                 String horizontalButtn = textView1.getText().toString();
                 String modeTextView =  modeTV.getText().toString();
 
-              Intent intent = new Intent(PreferenceActivity.this,MainActivity.class);
-              intent.putExtra("orientation",horizontalButtn);
-              intent.putExtra("mode",modeTextView);
-              startActivity(intent);
+                                     //Orientation
+                try {
+                    FileOutputStream fileOutputStream = openFileOutput("orientation.txt", Context.MODE_PRIVATE);
+                    fileOutputStream.write(horizontalButtn.getBytes());
+                    fileOutputStream.close();
+                    Toast.makeText(PreferenceActivity.this, "Data is Saved", Toast.LENGTH_SHORT).show();
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                                                 //Night Mode
+                try {
+                    FileOutputStream fileOutputStream = openFileOutput("nightMode.txt", Context.MODE_PRIVATE);
+                    fileOutputStream.write(modeTextView.getBytes());
+                    fileOutputStream.close();
+                    Toast.makeText(PreferenceActivity.this, "Data is Saved", Toast.LENGTH_SHORT).show();
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Intent intent = new Intent(PreferenceActivity.this,SplashScreen.class);
+                startActivity(intent);
 
             }
         });
+
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
